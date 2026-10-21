@@ -1,0 +1,242 @@
+warning: mathlib: repository '/Users/avatar/STAT4052/mid term project/MaxwellMGF/verification/clean-replay/MaxwellMGF/.lake/packages/mathlib' has local changes
+warning: batteries: repository '/Users/avatar/STAT4052/mid term project/MaxwellMGF/verification/clean-replay/MaxwellMGF/.lake/packages/batteries' has local changes
+✔ [8703/8711] Built MaxwellMGF.Core (3.0s)
+✔ [8704/8711] Built MaxwellMGF.Background (3.0s)
+⚠ [8705/8711] Built MaxwellMGF.Distributions (3.5s)
+warning: MaxwellMGF/Distributions.lean:98:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: MaxwellMGF/Distributions.lean:173:0: automatically included section variable(s) unused in theorem `MaxwellMGF.sum_mgf`:
+  [IsProbabilityMeasure μ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsProbabilityMeasure μ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MaxwellMGF/Distributions.lean:200:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+✔ [8706/8711] Built MaxwellMGF.Speed (3.5s)
+✔ [8707/8711] Built MaxwellMGF.Project (3.3s)
+✔ [8708/8711] Built MaxwellMGF (3.1s)
+ℹ [8710/8711] Built AxiomAudit (3.1s)
+info: AxiomAudit.lean:3:0: structure MaxwellDemo.SmoothModel : Type
+number of parameters: 0
+fields:
+  MaxwellDemo.SmoothModel.g : ℝ → ℝ
+  MaxwellDemo.SmoothModel.H : ℝ → ℝ
+  MaxwellDemo.SmoothModel.dg : Differentiable ℝ self.g
+  MaxwellDemo.SmoothModel.dH : Differentiable ℝ self.H
+  MaxwellDemo.SmoothModel.radial : ∀ (x y z : ℝ), self.g x + self.g y + self.g z = self.H (x ^ 2 + y ^ 2 + z ^ 2)
+  MaxwellDemo.SmoothModel.integrable : MeasureTheory.Integrable (fun x => Real.exp (self.g x)) MeasureTheory.volume
+  MaxwellDemo.SmoothModel.normalized : ∫ (x : ℝ), Real.exp (self.g x) = 1
+constructor:
+  MaxwellDemo.SmoothModel.mk (g H : ℝ → ℝ) (dg : Differentiable ℝ g) (dH : Differentiable ℝ H)
+    (radial : ∀ (x y z : ℝ), g x + g y + g z = H (x ^ 2 + y ^ 2 + z ^ 2))
+    (integrable : MeasureTheory.Integrable (fun x => Real.exp (g x)) MeasureTheory.volume)
+    (normalized : ∫ (x : ℝ), Real.exp (g x) = 1) : MaxwellDemo.SmoothModel
+info: AxiomAudit.lean:4:0: axiom MaxwellMGF.Background.product_density.{u_1} : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (n : ℕ) (V : Ω → EuclideanSpace ℝ (Fin n)),
+  Measurable V →
+    ∀ (f : ℝ → ℝ),
+      Measurable f →
+        (∀ (x : ℝ), 0 ≤ f x) →
+          MeasureTheory.Integrable f MeasureTheory.volume →
+            ∫ (x : ℝ), f x = 1 →
+              (MeasureTheory.Measure.map V μ =
+                  MeasureTheory.volume.withDensity fun v => ENNReal.ofReal (∏ i, f (v.ofLp i))) →
+                ProbabilityTheory.iIndepFun (fun i ω => (V ω).ofLp i) μ ∧
+                  ∀ (i : Fin n),
+                    MeasureTheory.Measure.map (fun ω => (V ω).ofLp i) μ =
+                      MeasureTheory.volume.withDensity fun x => ENNReal.ofReal (f x)
+info: AxiomAudit.lean:5:0: axiom MaxwellMGF.Background.gamma_mgf : ∀ (a r t : ℝ),
+  0 < a →
+    0 < r →
+      t < r →
+        MeasureTheory.Integrable (fun x => Real.exp (t * x)) (ProbabilityTheory.gammaMeasure a r) ∧
+          ProbabilityTheory.mgf id (ProbabilityTheory.gammaMeasure a r) t = (1 - t / r) ^ (-a)
+info: AxiomAudit.lean:6:0: axiom MaxwellMGF.Background.mgf_unique.{u_1} : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (X : Ω → ℝ),
+  Measurable X →
+    ∀ (ν : MeasureTheory.Measure ℝ) [MeasureTheory.IsProbabilityMeasure ν] (ε : ℝ),
+      0 < ε →
+        (∀ (t : ℝ), |t| < ε → MeasureTheory.Integrable (fun ω => Real.exp (t * X ω)) μ) →
+          (∀ (t : ℝ), |t| < ε → MeasureTheory.Integrable (fun x => Real.exp (t * x)) ν) →
+            (∀ (t : ℝ), |t| < ε → ProbabilityTheory.mgf X μ t = ProbabilityTheory.mgf id ν t) →
+              MeasureTheory.Measure.map X μ = ν
+info: AxiomAudit.lean:7:0: structure MaxwellMGF.Conclusions.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  (V : Ω → MaxwellDemo.Velocity) (b : ℝ) : Prop
+number of parameters: 5
+fields:
+  MaxwellMGF.Conclusions.positive : 0 < b
+  MaxwellMGF.Conclusions.sigmaPositive : 0 < MaxwellMGF.sigma b
+  MaxwellMGF.Conclusions.variance : ↑(MaxwellMGF.varianceParameter b) = MaxwellMGF.sigma b ^ 2
+  MaxwellMGF.Conclusions.independent : ProbabilityTheory.iIndepFun (fun i ω => (V ω).ofLp i) μ
+  MaxwellMGF.Conclusions.componentGaussian : ∀ (i : Fin 3),
+      MeasureTheory.Measure.map (fun ω => (V ω).ofLp i) μ =
+        ProbabilityTheory.gaussianReal 0 (MaxwellMGF.varianceParameter b)
+  MaxwellMGF.Conclusions.jointGaussian : MeasureTheory.Measure.map (fun ω i => (V ω).ofLp i) μ =
+      MeasureTheory.Measure.pi fun x => ProbabilityTheory.gaussianReal 0 (MaxwellMGF.varianceParameter b)
+  MaxwellMGF.Conclusions.velocityMGF : ∀ (t : Fin 3 → ℝ),
+      ProbabilityTheory.mgf (fun ω => ∑ i, t i * (V ω).ofLp i) μ 1 =
+        Real.exp ((MaxwellMGF.sigma b ^ 2 * ∑ i, t i ^ 2) / 2)
+  MaxwellMGF.Conclusions.velocityMGFFinite : ∀ (t : Fin 3 → ℝ),
+      MeasureTheory.Integrable (fun ω => Real.exp (∑ i, t i * (V ω).ofLp i)) μ
+  MaxwellMGF.Conclusions.squareDefinition : ∀ (i : Fin 3) (ω : Ω),
+      MaxwellMGF.squares b V i ω = ((V ω).ofLp i / MaxwellMGF.sigma b) ^ 2
+  MaxwellMGF.Conclusions.squaresIndependent : ProbabilityTheory.iIndepFun (MaxwellMGF.squares b V) μ
+  MaxwellMGF.Conclusions.squareMGF : ∀ (i : Fin 3),
+      ∀ t < 1 / 2, ProbabilityTheory.mgf (MaxwellMGF.squares b V i) μ t = (1 - 2 * t) ^ (-1 / 2)
+  MaxwellMGF.Conclusions.squareMGFFinite : ∀ (i : Fin 3),
+      ∀ t < 1 / 2, MeasureTheory.Integrable (fun ω => Real.exp (t * MaxwellMGF.squares b V i ω)) μ
+  MaxwellMGF.Conclusions.squareLaw : ∀ (i : Fin 3),
+      MeasureTheory.Measure.map (MaxwellMGF.squares b V i) μ = ProbabilityTheory.gammaMeasure (1 / 2) (1 / 2)
+  MaxwellMGF.Conclusions.sumMGF : ∀ t < 1 / 2,
+      ProbabilityTheory.mgf (MaxwellMGF.sumSquares b V) μ t = (1 - 2 * t) ^ (-3 / 2)
+  MaxwellMGF.Conclusions.sumMGFFinite : ∀ t < 1 / 2,
+      MeasureTheory.Integrable (fun ω => Real.exp (t * MaxwellMGF.sumSquares b V ω)) μ
+  MaxwellMGF.Conclusions.sumLaw : MeasureTheory.Measure.map (MaxwellMGF.sumSquares b V) μ =
+      ProbabilityTheory.gammaMeasure (3 / 2) (1 / 2)
+  MaxwellMGF.Conclusions.speedTransform : ∀ (ω : Ω), ‖V ω‖ = MaxwellMGF.sigma b * √(MaxwellMGF.sumSquares b V ω)
+  MaxwellMGF.Conclusions.gammaSpeedLaw : MeasureTheory.Measure.map (fun s => MaxwellMGF.sigma b * √s)
+        (ProbabilityTheory.gammaMeasure (3 / 2) (1 / 2)) =
+      MaxwellDemo.speedLaw b
+  MaxwellMGF.Conclusions.speedLaw : MeasureTheory.Measure.map (fun ω => ‖V ω‖) μ = MaxwellDemo.speedLaw b
+  MaxwellMGF.Conclusions.speedDensity : ∀ (r : ℝ),
+      MaxwellDemo.speedDensity b r =
+        if 0 ≤ r then
+          √(2 / Real.pi) * r ^ 2 * (MaxwellMGF.sigma b)⁻¹ ^ 3 * Real.exp (-r ^ 2 / (2 * MaxwellMGF.sigma b ^ 2))
+        else 0
+  MaxwellMGF.Conclusions.speedDensityLaw : MeasureTheory.Measure.map (fun ω => ‖V ω‖) μ =
+      MeasureTheory.volume.withDensity fun r => ENNReal.ofReal (MaxwellDemo.speedDensity b r)
+  MaxwellMGF.Conclusions.normalized : ∫ (r : ℝ), MaxwellDemo.speedDensity b r = 1
+constructor:
+  MaxwellMGF.Conclusions.mk.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω}
+    {V : Ω → MaxwellDemo.Velocity} {b : ℝ} (positive : 0 < b) (sigmaPositive : 0 < MaxwellMGF.sigma b)
+    (variance : ↑(MaxwellMGF.varianceParameter b) = MaxwellMGF.sigma b ^ 2)
+    (independent : ProbabilityTheory.iIndepFun (fun i ω => (V ω).ofLp i) μ)
+    (componentGaussian :
+      ∀ (i : Fin 3),
+        MeasureTheory.Measure.map (fun ω => (V ω).ofLp i) μ =
+          ProbabilityTheory.gaussianReal 0 (MaxwellMGF.varianceParameter b))
+    (jointGaussian :
+      MeasureTheory.Measure.map (fun ω i => (V ω).ofLp i) μ =
+        MeasureTheory.Measure.pi fun x => ProbabilityTheory.gaussianReal 0 (MaxwellMGF.varianceParameter b))
+    (velocityMGF :
+      ∀ (t : Fin 3 → ℝ),
+        ProbabilityTheory.mgf (fun ω => ∑ i, t i * (V ω).ofLp i) μ 1 =
+          Real.exp ((MaxwellMGF.sigma b ^ 2 * ∑ i, t i ^ 2) / 2))
+    (velocityMGFFinite : ∀ (t : Fin 3 → ℝ), MeasureTheory.Integrable (fun ω => Real.exp (∑ i, t i * (V ω).ofLp i)) μ)
+    (squareDefinition : ∀ (i : Fin 3) (ω : Ω), MaxwellMGF.squares b V i ω = ((V ω).ofLp i / MaxwellMGF.sigma b) ^ 2)
+    (squaresIndependent : ProbabilityTheory.iIndepFun (MaxwellMGF.squares b V) μ)
+    (squareMGF :
+      ∀ (i : Fin 3), ∀ t < 1 / 2, ProbabilityTheory.mgf (MaxwellMGF.squares b V i) μ t = (1 - 2 * t) ^ (-1 / 2))
+    (squareMGFFinite :
+      ∀ (i : Fin 3), ∀ t < 1 / 2, MeasureTheory.Integrable (fun ω => Real.exp (t * MaxwellMGF.squares b V i ω)) μ)
+    (squareLaw :
+      ∀ (i : Fin 3),
+        MeasureTheory.Measure.map (MaxwellMGF.squares b V i) μ = ProbabilityTheory.gammaMeasure (1 / 2) (1 / 2))
+    (sumMGF : ∀ t < 1 / 2, ProbabilityTheory.mgf (MaxwellMGF.sumSquares b V) μ t = (1 - 2 * t) ^ (-3 / 2))
+    (sumMGFFinite : ∀ t < 1 / 2, MeasureTheory.Integrable (fun ω => Real.exp (t * MaxwellMGF.sumSquares b V ω)) μ)
+    (sumLaw : MeasureTheory.Measure.map (MaxwellMGF.sumSquares b V) μ = ProbabilityTheory.gammaMeasure (3 / 2) (1 / 2))
+    (speedTransform : ∀ (ω : Ω), ‖V ω‖ = MaxwellMGF.sigma b * √(MaxwellMGF.sumSquares b V ω))
+    (gammaSpeedLaw :
+      MeasureTheory.Measure.map (fun s => MaxwellMGF.sigma b * √s) (ProbabilityTheory.gammaMeasure (3 / 2) (1 / 2)) =
+        MaxwellDemo.speedLaw b)
+    (speedLaw : MeasureTheory.Measure.map (fun ω => ‖V ω‖) μ = MaxwellDemo.speedLaw b)
+    (speedDensity :
+      ∀ (r : ℝ),
+        MaxwellDemo.speedDensity b r =
+          if 0 ≤ r then
+            √(2 / Real.pi) * r ^ 2 * (MaxwellMGF.sigma b)⁻¹ ^ 3 * Real.exp (-r ^ 2 / (2 * MaxwellMGF.sigma b ^ 2))
+          else 0)
+    (speedDensityLaw :
+      MeasureTheory.Measure.map (fun ω => ‖V ω‖) μ =
+        MeasureTheory.volume.withDensity fun r => ENNReal.ofReal (MaxwellDemo.speedDensity b r))
+    (normalized : ∫ (r : ℝ), MaxwellDemo.speedDensity b r = 1) : MaxwellMGF.Conclusions μ V b
+info: AxiomAudit.lean:8:0: MaxwellMGF.maxwell_mgf_project.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω}
+  [MeasureTheory.IsProbabilityMeasure μ] (V : Ω → MaxwellDemo.Velocity) (hV : Measurable V)
+  (M : MaxwellDemo.SmoothModel) (physicalModel : MeasureTheory.Measure.map V μ = MaxwellDemo.modelVelocityLaw M) :
+  ∃ b, MaxwellMGF.Conclusions μ V b
+info: AxiomAudit.lean:10:0: 'MaxwellDemo.derivative_radial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:11:0: 'MaxwellDemo.derivative_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:12:0: 'MaxwellDemo.log_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:13:0: 'MaxwellDemo.decay_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:14:0: 'MaxwellDemo.maxwell_characterization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:15:0: 'MaxwellDemo.amplitude_standard' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:16:0: 'MaxwellDemo.component_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:17:0: 'MaxwellDemo.component_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:18:0: 'MaxwellDemo.radial_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:19:0: 'MaxwellDemo.velocity_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:20:0: 'MaxwellDemo.speed_test_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:21:0: 'MaxwellDemo.velocity_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:22:0: 'MaxwellDemo.speed_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:23:0: 'MaxwellDemo.speed_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:24:0: 'MaxwellDemo.density_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:25:0: 'MaxwellDemo.speed_pushforward' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:26:0: 'MaxwellDemo.velocity_isProbability' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:27:0: 'MaxwellDemo.speed_isProbability' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:28:0: 'MaxwellDemo.particle_speed_distribution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:29:0: 'MaxwellDemo.expected_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:30:0: 'MaxwellDemo.exp_log_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:31:0: 'MaxwellDemo.gaussianModel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:32:0: 'MaxwellDemo.model_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:33:0: 'MaxwellMGF.variance_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:34:0: 'MaxwellMGF.component_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:35:0: 'MaxwellMGF.quadratic_mgf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:36:0: 'MaxwellMGF.quadratic_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:37:0: 'MaxwellMGF.square_mgf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:38:0: 'MaxwellMGF.square_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:39:0: 'MaxwellMGF.square_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ MaxwellMGF.Background.gamma_mgf,
+ MaxwellMGF.Background.mgf_unique]
+info: AxiomAudit.lean:40:0: 'MaxwellMGF.model_facts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ MaxwellMGF.Background.product_density]
+info: AxiomAudit.lean:41:0: 'MaxwellMGF.derived_components' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ MaxwellMGF.Background.product_density]
+info: AxiomAudit.lean:42:0: 'MaxwellMGF.joint_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:43:0: 'MaxwellMGF.joint_mgf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:44:0: 'MaxwellMGF.squares_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:45:0: 'MaxwellMGF.sum_mgf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:46:0: 'MaxwellMGF.sum_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:47:0: 'MaxwellMGF.sum_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ MaxwellMGF.Background.gamma_mgf,
+ MaxwellMGF.Background.mgf_unique]
+info: AxiomAudit.lean:48:0: 'MaxwellMGF.sigma_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:49:0: 'MaxwellMGF.sigma_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:50:0: 'MaxwellMGF.b_sigma' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:51:0: 'MaxwellMGF.standardized_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:52:0: 'MaxwellMGF.norm_sumSquares' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:53:0: 'MaxwellMGF.speed_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:54:0: 'MaxwellMGF.speed_density_sigma' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:55:0: 'MaxwellMGF.speedLaw_full_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:56:0: 'MaxwellMGF.speed_density_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AxiomAudit.lean:57:0: 'MaxwellMGF.gamma_speed_pushforward' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ MaxwellMGF.Background.gamma_mgf,
+ MaxwellMGF.Background.mgf_unique]
+info: AxiomAudit.lean:58:0: 'MaxwellMGF.maxwell_mgf_project' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ MaxwellMGF.Background.gamma_mgf,
+ MaxwellMGF.Background.mgf_unique,
+ MaxwellMGF.Background.product_density]
+Build completed successfully (8711 jobs).

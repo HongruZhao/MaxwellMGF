@@ -1,0 +1,22 @@
+warning: mathlib: repository '/Users/avatar/STAT4052/mid term project/MaxwellMGF/verification/clean-replay/MaxwellMGF/.lake/packages/mathlib' has local changes
+warning: batteries: repository '/Users/avatar/STAT4052/mid term project/MaxwellMGF/verification/clean-replay/MaxwellMGF/.lake/packages/batteries' has local changes
+{
+  "project_theorems_audited": 48,
+  "proof_holes": 0,
+  "additional_axioms": [
+    "MaxwellMGF.Background.gamma_mgf",
+    "MaxwellMGF.Background.mgf_unique",
+    "MaxwellMGF.Background.product_density"
+  ],
+  "main_theorem_axioms": [
+    "Classical.choice",
+    "MaxwellMGF.Background.gamma_mgf",
+    "MaxwellMGF.Background.mgf_unique",
+    "MaxwellMGF.Background.product_density",
+    "Quot.sound",
+    "propext"
+  ],
+  "lean": "v4.33.0-rc2",
+  "mathlib": "641fbd329d4ffb62bef83c51f54088469056bd36",
+  "publication": "pending"
+}

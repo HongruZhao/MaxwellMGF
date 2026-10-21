@@ -1,0 +1,133 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,xcolor,fancyhdr,enumitem}
+\usepackage[margin=0.78in,headheight=14pt]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
+\definecolor{navy}{HTML}{17374D}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small STAT 4052 | Fall 2026}
+\fancyhead[R]{\small Maxwell distribution and MGFs}
+\fancyfoot[C]{\small\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlist{nosep,leftmargin=1.25em}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Law}{\mathcal L}
+\newcommand{\N}{\mathcal N}
+\newcommand{\heading}[1]{\par\medskip{\large\bfseries\color{navy}#1}\par\smallskip}
+\raggedbottom
+\begin{document}
+{\LARGE\bfseries\color{navy} Maxwell's Speed Law via MGFs}\par
+{\large Hongru Zhao}\par
+STAT 4052 midterm project \hfill October 20, 2026\par
+\textbf{Version:} local release v1.0.0. \textbf{GitHub URL/remote commit: publication pending.}
+The source package includes pinned dependencies, reproducible build instructions, and verification logs.
+
+\heading{1. Model and precise conditional theorem}
+Maxwell's Proposition IV connects an isotropic gas-velocity model to a Gaussian component law and a non-Gaussian speed law \cite{maxwell}. This project reconstructs that argument and connects it to the chi-square distributions used in statistics.
+
+Let $(\Omega,\mathcal F,P)$ be a probability space and $V:\Omega\to\R^3$ be measurable. Work in the gas's \emph{bulk rest frame}. Equilibrium and the applicability of the following model are physical postulates, not consequences of perpendicular coordinate axes. Assume a common positive density $f=e^g$, with $g,H:\R\to\R$ differentiable, such that
+\begin{equation}\label{model}
+ \int_\R f(x)\,dx=1,\quad f\text{ integrable},\qquad
+ g(x)+g(y)+g(z)=H(x^2+y^2+z^2).
+\end{equation}
+Assume $\Law(V)$ has Lebesgue density $f(v_1)f(v_2)f(v_3)$.
+Factorization expresses \emph{mutual component independence}; the identity in \eqref{model} expresses isotropy, with $\Phi=e^H$. The differentiable extension of $H$ to all of $\R$ is an explicit sufficient regularity assumption. Positivity, identical marginals, normalization, and independence are model inputs \cite{maxwell,indep}.
+
+\textbf{Theorem (conditional on these hypotheses and the three inputs on page 3).}
+There exists $\sigma>0$ such that, for $R=\|V\|$, $U_i=(V_i/\sigma)^2$, and $S=\sum_{i=1}^3U_i$,
+\begin{align}
+ \Law(V_i)&=\N(0,\sigma^2),&
+ \Law(V)&=\bigotimes_{i=1}^3\N(0,\sigma^2)=\N_3(0,\sigma^2 I_3),\label{normal}\\
+ M_V(t)&=e^{\sigma^2\|t\|^2/2},&
+ \Law(U_i)&=\chi^2_1,\quad \Law(S)=\chi^2_3.\label{main}
+\end{align}
+The $U_i$ are mutually independent; their MGFs and $M_S$ exist for $t<1/2$.
+Moreover $R=\sigma\sqrt S$, and $\Law(R)=p_R(r)\,dr$, where
+\begin{equation}\label{maxwell}
+ p_R(r)=
+ \begin{cases}\sqrt{2/\pi}\,r^2\sigma^{-3}e^{-r^2/(2\sigma^2)},&r\ge0,\\0,&r<0,\end{cases}
+ \qquad \int_\R p_R(r)\,dr=1.
+\end{equation}
+These are equalities of probability measures, not only candidate-density identities.
+
+\heading{2. Deriving the Gaussian rather than assuming it}
+Differentiate \eqref{model} in $x$ to obtain
+$g'(x)=2xH'(x^2+y^2+z^2)$. Comparing $(x,1,0)$ with $(1,x,0)$ gives $g'(x)=xg'(1)$, including $x=0$. Hence $g(x)=g(0)-bx^2$, with $b=-g'(1)/2$. Integrability forces $b>0$: otherwise $f(x)\ge e^{g(0)}>0$ on all of $\R$. The Gaussian integral then gives
+$f(x)=\sqrt{b/\pi}\,e^{-bx^2}$ and $\sigma^2=(2b)^{-1}$.
+Independence identifies the full joint law in \eqref{normal}; orthogonality alone would not do so.
+\newpage
+
+\heading{3. From the joint MGF to chi-square laws}
+For every $t=(t_1,t_2,t_3)\in\R^3$, the Gaussian exponential integrals are finite. Independence therefore gives
+\[
+ M_V(t)=\E e^{\sum_i t_iV_i}
+ =\prod_i e^{\sigma^2t_i^2/2}
+ =e^{\sigma^2\|t\|^2/2}.
+\]
+Measurable functions applied separately to mutually independent variables remain independent. Applying $x\mapsto(x/\sigma)^2$ thus preserves independence of all three coordinates. With $Z_i=V_i/\sigma$, the one-dimensional Gaussian integral yields, for $t<1/2$,
+\begin{equation}\label{umgf}
+ M_{U_i}(t)=\frac1{\sqrt{2\pi}}\int_\R e^{-(1-2t)z^2/2}\,dz
+ =(1-2t)^{-1/2}.
+\end{equation}
+The coefficient $1-2t>0$ also proves absolute integrability. The Lean development evaluates the same integral in the equivalent parameterization $U_i=2bV_i^2$; it does not assume the square-normal law.
+
+Throughout, $\operatorname{Gamma}(a,r)$ uses \emph{shape $a$ and rate $r$}, with density
+\[
+ q_{a,r}(s)=\frac{r^a}{\Gamma(a)}s^{a-1}e^{-rs}\,\mathbf1_{\{s>0\}}.
+\]
+Its MGF is $(1-t/r)^{-a}$ for $t<r$ \cite{gamma}. By \eqref{umgf}, MGF uniqueness identifies $U_i$ with $\operatorname{Gamma}(1/2,1/2)=\chi^2_1$. Multiplication of the three MGFs gives
+\begin{equation}\label{smgf}
+ M_S(t)=\prod_{i=1}^3M_{U_i}(t)=(1-2t)^{-3/2},\qquad t<1/2.
+\end{equation}
+The code also proves exponential integrability of the sum. Both comparison MGFs are finite on $|t|<1/4$. Uniqueness therefore gives
+\[\Law(S)=\operatorname{Gamma}(3/2,1/2)=\chi^2_3.\]
+This identifies the sum as a chi-square law \cite{mgf,chisq}.
+Equality of moments without this existence argument would not suffice.
+
+\heading{4. Transforming squared speed into speed}
+Since $S=R^2/\sigma^2$ and $R\ge0$, $R=\sigma\sqrt S$ pointwise. For $r>0$, change variables $s=r^2/\sigma^2$, with $ds/dr=2r/\sigma^2$. Using $\Gamma(3/2)=\sqrt\pi/2$ gives
+\[
+ p_R(r)=q_{3/2,\,1/2}(r^2/\sigma^2)\frac{2r}{\sigma^2}
+       =\sqrt{2/\pi}\,\frac{r^2}{\sigma^3}e^{-r^2/(2\sigma^2)}.
+\]
+There is no atom at zero, and the density is zero for negative speeds. Normalization follows from the same substitution:
+$\int_0^\infty p_R(r)\,dr=\int_0^\infty q_{3/2,\,1/2}(s)\,ds=1$.
+
+The formal proof checks the density independently by polar integration of the derived Gaussian velocity density:
+$\int_{\R^3}F(\|v\|)\,dv=4\pi\int_0^\infty r^2F(r)\,dr$.
+It proves both $\Law(R)=p_R(r)\,dr$ and the explicit transformation identity
+\[
+  (s\mapsto\sigma\sqrt s)_*\operatorname{Gamma}(3/2,1/2)=p_R(r)\,dr.
+\]
+The latter follows by composing the checked pushforward for $S$ with the pointwise identity for $R$. Thus the distribution statements include the actual laws and their normalization.
+\newpage
+
+\heading{5. External inputs, verification, and scope}
+Exactly \textbf{three additional mathematical axioms} are declared; all are generic background results, and none states the Maxwell characterization, the three-square sum law, or the speed-law conclusion.
+\begin{enumerate}[label=\textbf{A\arabic*.}]
+\item \textbf{Product-density criterion.} For any finite dimension $n$, a measurable $W:\Omega\to\R^n$ with density $\prod_i f(w_i)$, where $f$ is measurable, nonnegative, integrable, and $\int f=1$, has mutually independent coordinates with common law $f(x)\,dx$. Used to pass from the physical density model to the independence API and marginal measures \cite[independence between continuous variables; mutual independence]{indep}.
+\item \textbf{Gamma MGF.} For every $a,r>0$ and $t<r$, $e^{tx}$ is integrable under $\operatorname{Gamma}(a,r)$ and its integral is $(1-t/r)^{-a}$. Used to identify the comparison MGFs at $(a,r)=(1/2,1/2)$ and $(3/2,1/2)$ \cite[general Gamma distribution, Moments]{gamma}.
+\item \textbf{MGF uniqueness.} If measurable $X$ on a probability space and a probability measure $\nu$ have finite equal MGFs for every $|t|<\varepsilon$, for some $\varepsilon>0$, then $\Law(X)=\nu$. Used for the one-square and three-square laws, with $\varepsilon=1/4$ \cite[characterization of a distribution via the MGF]{mgf}.
+\end{enumerate}
+The physical hypotheses in \eqref{model} and the assumed velocity density are theorem parameters. They are separate from A1--A3 and remain assumptions even when the conditional theorem is checked. Gaussian integration, differentiation, polar integration, Gamma normalization, preservation of independence by measurable maps, and independent-MGF multiplication use proved mathlib results \cite{mathlib}.
+
+\textbf{Verification.} Lean v4.33.0-rc2 and mathlib revision
+\texttt{641fbd329d4ffb62bef83c51f54088469056bd36} are pinned.
+The project builds without errors or proof holes. Its axiom audit exposes A1--A3 in the complete theorem, together with the standard foundations \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}. The Gaussian characterization and direct speed pushforward need only those standard foundations. Complete theorem statements, source-to-report correspondence, and build/audit logs accompany the source.
+
+\textbf{Limitations and delivery status.} This proves a smooth positive-density characterization conditional on the model and A1--A3. It does not derive independence or equilibration from collision mechanics, prove a minimal-regularity result, or calibrate $\sigma$ to temperature. The local files are verified; a public GitHub URL and remotely checked commit remain required before submission. Team eligibility is an administrative requirement, not a mathematical conclusion.
+
+\textbf{AI and reused work.} OpenAI Codex assisted with mathematical exposition, Lean code, debugging, and LaTeX preparation. The existing local Maxwell demonstration supplied the credited calculus and polar-integration core. The author must review the assumptions and be able to explain the argument; compiler acceptance does not validate the physical postulates.
+
+\begingroup\small
+\begin{thebibliography}{9}\setlength{\itemsep}{1pt}\setlength{\parskip}{0pt}
+\bibitem{maxwell} J. C. Maxwell (1860), \emph{Illustrations of the Dynamical Theory of Gases}, Part I, Proposition IV. Supplied reprint, pp.~152--154 (PDF pp.~5--7). \href{http://www.alternativaverde.it/stel/documenti/Maxwell/1860/Maxwell%20%281860%29%20-%20Illustrations%20of%20the%20dynamical%20theory%20of%20gases.pdf}{Source scan}.
+\bibitem{indep} M. Taboga, \href{https://www.statlect.com/fundamentals-of-probability/independent-random-variables}{\emph{Independent random variables}}, StatLect.
+\bibitem{mgf} M. Taboga, \href{https://www.statlect.com/fundamentals-of-probability/moment-generating-function}{\emph{Moment generating function}}, StatLect.
+\bibitem{gamma} K. Siegrist, \href{https://www.randomservices.org/random/special/Gamma.html}{\emph{The Gamma Distribution}}, Random: Probability, Mathematical Statistics, Stochastic Processes. The source uses scale $b$; here rate $r=1/b$.
+\bibitem{chisq} K. Siegrist, \href{https://www.randomservices.org/random/special/ChiSquare.html}{\emph{The Chi-Square Distribution}}, same text, distribution and chi-distribution sections.
+\bibitem{mathlib} The mathlib community, \href{https://github.com/leanprover-community/mathlib4/tree/641fbd329d4ffb62bef83c51f54088469056bd36}{\emph{mathlib4}}, pinned revision above. Exact library declarations are recorded in the project documentation.
+\end{thebibliography}
+\endgroup
+\end{document}

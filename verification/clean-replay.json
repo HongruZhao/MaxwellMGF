@@ -1,0 +1,26 @@
+{
+  "date_local": "2026-10-20",
+  "archive_extraction_crc_and_manifest": "passed",
+  "fresh_project_module_rebuild": "passed",
+  "fresh_axiom_audit": "passed",
+  "fresh_report_compile": "passed",
+  "fresh_report_text_identical": true,
+  "pages": 3,
+  "project_theorems_audited": 48,
+  "proof_holes": 0,
+  "dependency_cache": "existing pinned compiled mathlib cache reused; no full library source rebuild",
+  "matched_source_sha256": {
+    "MaxwellMGF/Core.lean": "62240d2457f92a25fa773258e36df11c783fb78b9f2dfc90e5d09ac4fdf02f24",
+    "MaxwellMGF/Distributions.lean": "c3feb6881cc2eb941a58f2b28de25227e3de542cf6951e6090e6430fd078a93d",
+    "MaxwellMGF/Project.lean": "f8cac9379ce32efb9d59779e5553219a13d66fb5bf3d4331c17b57b8e57e36ad",
+    "MaxwellMGF/Background.lean": "6722a2e35268bd23be2a6a564e993d9dd65ae38a9ce3e73e86c36f8ee4a2decb",
+    "MaxwellMGF/Speed.lean": "bb25065faa90a215b5ae3f71dd5ab41d93091c549acb671162542c978edd5700",
+    "MaxwellMGF.lean": "f0904f4cf5c22d57daced7da9390afa0ce2af7e059dc6c9ac952e41f926bf01b",
+    "AxiomAudit.lean": "256647387acac5eb7d1bb377809ce7509cc0202c4154f1f96416f37ba9269560",
+    "lakefile.toml": "6f2889c5ebe0f578648777f9dd8805a36a0435667334d7a4a79e07663c83437b",
+    "lake-manifest.json": "879e7ab6eea62ed4d5ab8240847955ed41a158106a64c0f15bf4854ff759ed28",
+    "lean-toolchain": "0d3c76ccd8772d8bcbe207241421a760312b71a6aa82f84194391fdf5cb026d6",
+    "report/latex/main.tex": "ef04ae20aaf03220222bad03155ac136e3cf0117857e7ee2ef6e1ee9f67e4b43"
+  },
+  "publication": "pending"
+}

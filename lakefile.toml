@@ -1,0 +1,14 @@
+name = "maxwell_mgf"
+version = "1.0.0"
+defaultTargets = ["MaxwellMGF", "AxiomAudit"]
+
+[[lean_lib]]
+name = "MaxwellMGF"
+
+[[lean_lib]]
+name = "AxiomAudit"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "641fbd329d4ffb62bef83c51f54088469056bd36"

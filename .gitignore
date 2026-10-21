@@ -1,0 +1,11 @@
+.lake/
+.DS_Store
+__pycache__/
+*.olean
+*.ilean
+report/latex/*.aux
+report/latex/*.out
+report/latex/*.synctex.gz
+verification/clean-replay/
+verification/first-report-build/
+verification/report-build/
