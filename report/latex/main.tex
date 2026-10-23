@@ -19,9 +19,9 @@
 \begin{document}
 {\LARGE\bfseries\color{navy} Maxwell's Speed Law via MGFs}\par
 {\large Hongru Zhao}\par
-STAT 4052 midterm project \hfill October 20, 2026\par
-\textbf{Version:} local release v1.0.0. \textbf{GitHub URL/remote commit: publication pending.}
-The source package includes pinned dependencies, reproducible build instructions, and verification logs.
+STAT 4052 midterm project \hfill October 23, 2026\par
+\textbf{Repository:} \href{https://github.com/HongruZhao/MaxwellMGF}{github.com/HongruZhao/MaxwellMGF} (private).
+\textbf{Version:} \href{https://github.com/HongruZhao/MaxwellMGF/tree/v1.0.1}{Git tag v1.0.1}. The repository includes pinned dependencies, build instructions, and verification logs.
 
 \heading{1. Model and precise conditional theorem}
 Maxwell's Proposition IV connects an isotropic gas-velocity model to a Gaussian component law and a non-Gaussian speed law \cite{maxwell}. This project reconstructs that argument and connects it to the chi-square distributions used in statistics.
@@ -116,7 +116,7 @@ The physical hypotheses in \eqref{model} and the assumed velocity density are th
 \texttt{641fbd329d4ffb62bef83c51f54088469056bd36} are pinned.
 The project builds without errors or proof holes. Its axiom audit exposes A1--A3 in the complete theorem, together with the standard foundations \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}. The Gaussian characterization and direct speed pushforward need only those standard foundations. Complete theorem statements, source-to-report correspondence, and build/audit logs accompany the source.
 
-\textbf{Limitations and delivery status.} This proves a smooth positive-density characterization conditional on the model and A1--A3. It does not derive independence or equilibration from collision mechanics, prove a minimal-regularity result, or calibrate $\sigma$ to temperature. The local files are verified; a public GitHub URL and remotely checked commit remain required before submission. Team eligibility is an administrative requirement, not a mathematical conclusion.
+\textbf{Limitations and delivery status.} This proves a smooth positive-density characterization conditional on the model and A1--A3. It does not derive independence or equilibration from collision mechanics, prove a minimal-regularity result, or calibrate $\sigma$ to temperature. The repository is private; the instructor must have access to open and download the specified version. Team eligibility is an administrative requirement, not a mathematical conclusion.
 
 \textbf{AI and reused work.} OpenAI Codex assisted with mathematical exposition, Lean code, debugging, and LaTeX preparation. The existing local Maxwell demonstration supplied the credited calculus and polar-integration core. The author must review the assumptions and be able to explain the argument; compiler acceptance does not validate the physical postulates.
 

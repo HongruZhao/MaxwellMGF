@@ -15,6 +15,5 @@
     "propext"
   ],
   "lean": "v4.33.0-rc2",
-  "mathlib": "641fbd329d4ffb62bef83c51f54088469056bd36",
-  "publication": "pending"
+  "mathlib": "641fbd329d4ffb62bef83c51f54088469056bd36"
 }

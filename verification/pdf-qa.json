@@ -1,11 +1,14 @@
 {
+  "date_local": "2026-10-23",
   "pages": 3,
   "author": "Hongru Zhao",
   "all_pages_rendered_and_visually_inspected": true,
   "compiler_errors": 0,
   "overfull_boxes": 0,
   "unresolved_references": 0,
-  "pdf_sha256": "acec1e7f20e57ae433c980ccc35789f497509631e15c42f577f343ab13a2d202",
-  "source_sha256": "ef04ae20aaf03220222bad03155ac136e3cf0117857e7ee2ef6e1ee9f67e4b43",
-  "publication": "pending"
+  "pdf_sha256": "f452a3b35bb90dab53945685deab0752d2be681c8edd9efa5b32294ba64b6838",
+  "source_sha256": "cea52f5e5990938a9098fff190cf578c6844bdc39156ed5286ab9bcea4445052",
+  "repository": "https://github.com/HongruZhao/MaxwellMGF",
+  "visibility": "private",
+  "version_tag": "v1.0.1"
 }

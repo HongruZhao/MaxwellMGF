@@ -1,5 +1,5 @@
 name = "maxwell_mgf"
-version = "1.0.0"
+version = "1.0.1"
 defaultTargets = ["MaxwellMGF", "AxiomAudit"]
 
 [[lean_lib]]

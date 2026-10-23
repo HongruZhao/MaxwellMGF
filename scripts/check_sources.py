@@ -71,7 +71,6 @@ def main():
         "main_theorem_axioms": sorted(dependencies["MaxwellMGF.maxwell_mgf_project"]),
         "lean": "v4.33.0-rc2",
         "mathlib": mathlib["rev"],
-        "publication": "pending",
     }
     (ROOT / "verification/source-audit.json").write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))

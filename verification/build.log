@@ -1,7 +1,6 @@
 warning: mathlib: repository '/Users/avatar/STAT4052/mid term project/MaxwellMGF/.lake/packages/mathlib' has local changes
 warning: batteries: repository '/Users/avatar/STAT4052/mid term project/MaxwellMGF/.lake/packages/batteries' has local changes
-✔ [8704/8711] Built MaxwellMGF.Background (3.1s)
-⚠ [8705/8711] Built MaxwellMGF.Distributions (3.5s)
+⚠ [8705/8711] Replayed MaxwellMGF.Distributions
 warning: MaxwellMGF/Distributions.lean:98:2: Try this: 
   haveI̵
 
@@ -24,10 +23,7 @@ The difference between `have` and `haveI` is that `haveI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-✔ [8706/8711] Built MaxwellMGF.Speed (3.5s)
-✔ [8707/8711] Built MaxwellMGF.Project (3.2s)
-✔ [8708/8711] Built MaxwellMGF (2.0s)
-ℹ [8710/8711] Built AxiomAudit (3.1s)
+ℹ [8710/8711] Replayed AxiomAudit
 info: AxiomAudit.lean:3:0: structure MaxwellDemo.SmoothModel : Type
 number of parameters: 0
 fields:
