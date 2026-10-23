@@ -30,7 +30,8 @@ $$
 
 The joint MGF and the square/sum MGFs, including their integrability conditions,
 are part of the full conclusion below. The Gamma convention is **shape/rate**:
-$\chi^2_k=\operatorname{Gamma}(k/2,1/2)$. Lean indexes components by `Fin 3`
+a chi-square law with $k$ degrees of freedom is Gamma(k/2, 1/2).
+Lean indexes components by `Fin 3`
 (indices 0, 1, 2).
 
 ## Exact Lean endpoint
