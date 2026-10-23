@@ -1,6 +1,6 @@
 # Exact assumptions and external inputs
 
-The report's result is `MaxwellMGF.maxwell_mgf_project`. There are exactly three
+The main theorem is `MaxwellMGF.maxwell_mgf_project`. There are exactly three
 new global mathematical axioms, all in `MaxwellMGF/Background.lean`. They are
 permitted background inputs under the supplied course rubric. The final result
 is conditional on them. The source audit checks their exact names; no

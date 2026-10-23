@@ -1,11 +1,11 @@
-# Report-to-Lean correspondence
+# Theorem-to-Lean correspondence
 
 The primary theorem is `MaxwellMGF.maxwell_mgf_project`, which returns a positive
 real b and the proposition `MaxwellMGF.Conclusions μ V b`. It is conditional on
 the exact physical/model hypotheses printed in `AxiomAudit.lean` and the three
 background axioms in `ASSUMPTIONS.md`.
 
-| Report statement | Checked declarations | Evidence boundary |
+| Mathematical statement | Checked declarations | Evidence boundary |
 |---|---|---|
 | Positive common factor, isotropic log-density, normalization | `MaxwellDemo.SmoothModel`; `physicalModel` argument | These are hypotheses, not proved empirical facts. |
 | Linear log-derivative and quadratic log-density | `derivative_radial`, `derivative_linear`, `log_quadratic` | Differentiability is used explicitly. |
@@ -30,7 +30,7 @@ background axioms in `ASSUMPTIONS.md`.
 | Normalization | `speed_density_integral`; `Conclusions.normalized` | Integral over all real numbers equals 1. |
 
 Core declarations are in namespace `MaxwellDemo`; all other project results are
-in `MaxwellMGF`. The report's subscripts 1,2,3 correspond to Lean's indices 0,1,2.
+in `MaxwellMGF`. The mathematical subscripts 1,2,3 correspond to Lean's indices 0,1,2.
 In the joint-MGF statement, the sum of squared real coordinates is the Euclidean
 squared norm of the coefficient vector.
 
@@ -41,11 +41,10 @@ proved using the pinned mathlib library. The complete MGF/Gamma route has three
 explicit generic background inputs. These are not proof placeholders, but their
 truth is assumed and cited rather than formalized here.
 
-The displayed one-dimensional Jacobian calculation in the report explains the
-usual transformation proof. The formal code verifies the resulting density by
-polar integration and proves the Gamma transformation by map composition and
-the pointwise speed identity. It does not claim to contain a separate formal
-derivation of the Gamma-density Jacobian simplification.
+The formal code verifies the speed density by polar integration and proves the
+Gamma transformation by map composition and the pointwise speed identity. It
+does not contain a separate formal derivation of the Gamma-density Jacobian
+simplification.
 
 No collision dynamics, approach to equilibrium, physical independence proof,
 temperature calibration, observed-count guarantee, or minimal-regularity

@@ -11,9 +11,9 @@ DEST = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT.parent / "Maxw
 
 def included(path):
     rel = path.relative_to(ROOT)
-    if any(p in {".git", ".lake", "__pycache__", "first-report-build", "report-build", "clean-replay"} for p in rel.parts):
+    if any(p in {".git", ".lake", "__pycache__", "first-report-build", "report-build", "clean-replay", "report", "previews"} for p in rel.parts):
         return False
-    if path.name in {".DS_Store", "SHA256SUMS.txt"}:
+    if path.name in {".DS_Store", "SHA256SUMS.txt", "build-report.sh", "pdf-qa.json", "report-build.log", "clean-replay-report.log"}:
         return False
     if path.suffix in {".olean", ".ilean", ".aux", ".out"}:
         return False

@@ -9,3 +9,11 @@ report/latex/*.synctex.gz
 verification/clean-replay/
 verification/first-report-build/
 verification/report-build/
+
+# Reports remain local; GitHub contains the Lean project and documentation.
+report/
+verification/previews/
+verification/pdf-qa.json
+verification/report-build.log
+verification/clean-replay-report.log
+scripts/build-report.sh

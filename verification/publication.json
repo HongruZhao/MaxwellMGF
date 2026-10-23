@@ -4,8 +4,8 @@
   "repository_id": 1430677903,
   "visibility": "public",
   "owner": "HongruZhao",
-  "version_tag": "v1.0.4",
+  "version_tag": "v1.0.5",
   "initial_uploaded_commit": "6fef46b43aaa66ff3b7dd6103e39706088fceddc",
   "access_note": "Anyone can view, download, or fork the public repository; changing this repository requires owner or authorized collaborator access.",
-  "revision_note": "GitHub repository visibility verified public. Report and README updated for public access. Lean sources unchanged from v1.0.1."
+  "revision_note": "Lean-only publication: front-page theorem endpoint and external-axiom explanations; THEOREM.md includes exact definitions and source links. Report files removed from the current tracked tree and preserved locally; older tags retain them. Lean sources unchanged from v1.0.1."
 }
