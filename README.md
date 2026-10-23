@@ -33,11 +33,13 @@ The complete theorem assumes exactly three additional mathematical axioms,
 declared in [Background.lean](MaxwellMGF/Background.lean). They are cited
 background results; their proofs are not formalized in this project.
 
-| Exact Lean name | What is assumed | Where it is used |
-|---|---|---|
-| [`MaxwellMGF.Background.product_density`](MaxwellMGF/Background.lean#L13-L20) | A normalized product density gives mutually independent coordinates and the stated marginal laws. | `model_facts`, then `derived_components`. |
-| [`MaxwellMGF.Background.gamma_mgf`](MaxwellMGF/Background.lean#L25-L27) | For shape/rate Gamma(a,r), exp(t x) is integrable and the MGF is (1 − t/r)^(−a) whenever a,r > 0 and t < r. | The comparison Gamma MGFs in `square_law` and `sum_law`. |
-| [`MaxwellMGF.Background.mgf_unique`](MaxwellMGF/Background.lean#L32-L37) | Two probability laws with finite, equal MGFs on a common open neighborhood of zero are equal. | Identifying the one-square and three-square laws; the Gamma-to-speed result uses the sum law. |
+All three declarations are in namespace `MaxwellMGF.Background`.
+
+| Axiom | Meaning and use |
+|---|---|
+| [`product_density`](MaxwellMGF/Background.lean#L13-L20) | A normalized product density gives mutually independent coordinates and the stated marginal laws. Used in `model_facts` and `derived_components`. |
+| [`gamma_mgf`](MaxwellMGF/Background.lean#L25-L27) | Shape/rate Gamma(a,r) has finite MGF (1 − t/r)^(−a) for a,r > 0 and t < r. Supplies the comparison MGFs in `square_law` and `sum_law`. |
+| [`mgf_unique`](MaxwellMGF/Background.lean#L32-L37) | Finite, equal MGFs on a common open neighborhood of zero determine the probability law. Used for the square and sum laws; the Gamma-to-speed result uses the sum law. |
 
 Isotropy, density factorization, positivity, normalization, and differentiability
 are explicit **model hypotheses**. The three axioms above are separate global
