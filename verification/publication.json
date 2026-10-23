@@ -2,10 +2,10 @@
   "date_local": "2026-10-23",
   "repository": "https://github.com/HongruZhao/MaxwellMGF",
   "repository_id": 1430677903,
-  "visibility": "private",
+  "visibility": "public",
   "owner": "HongruZhao",
-  "version_tag": "v1.0.3",
+  "version_tag": "v1.0.4",
   "initial_uploaded_commit": "6fef46b43aaa66ff3b7dd6103e39706088fceddc",
-  "access_note": "The instructor must have access to view or download this private repository.",
-  "revision_note": "Assumption 1 (isotropy) and Assumption 2 (independent components) are separately labeled and explicitly named in the theorem hypothesis. Lean sources unchanged from v1.0.1."
+  "access_note": "Anyone can view, download, or fork the public repository; changing this repository requires owner or authorized collaborator access.",
+  "revision_note": "GitHub repository visibility verified public. Report and README updated for public access. Lean sources unchanged from v1.0.1."
 }
