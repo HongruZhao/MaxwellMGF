@@ -57,4 +57,4 @@ OpenAI Codex assisted with the code and report. The author remains responsible
 for understanding the theorem and its assumptions.
 
 **Repository:** [HongruZhao/MaxwellMGF](https://github.com/HongruZhao/MaxwellMGF) (private).
-**Version:** `v1.0.2`. The instructor needs access to open or download it.
+**Version:** `v1.0.3`. The instructor needs access to open or download it.

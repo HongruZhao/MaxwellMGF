@@ -21,23 +21,24 @@
 {\large Hongru Zhao}\par
 STAT 4052 midterm project \hfill October 23, 2026\par
 \textbf{Repository:} \href{https://github.com/HongruZhao/MaxwellMGF}{github.com/HongruZhao/MaxwellMGF} (private).
-\textbf{Version:} \href{https://github.com/HongruZhao/MaxwellMGF/tree/v1.0.2}{Git tag v1.0.2}. The repository includes pinned dependencies, build instructions, and verification logs.
+\textbf{Version:} \href{https://github.com/HongruZhao/MaxwellMGF/tree/v1.0.3}{Git tag v1.0.3}. The repository includes pinned dependencies, build instructions, and verification logs.
 
 \heading{1. Ideal-gas model and physical conclusion}
 Consider a classical ideal gas at thermal equilibrium, viewed in its \emph{bulk rest frame}. Let $V=(V_1,V_2,V_3)$ be the velocity of a randomly chosen molecule and $R=\|V\|$ its speed. Following Maxwell's Proposition IV, we assume two properties of its velocity density \cite{maxwell}:
-\begin{enumerate}
-\item \textbf{Isotropy:} there is no preferred direction. The joint velocity density depends only on $v_1^2+v_2^2+v_3^2$.
-\item \textbf{Independent components:} the three Cartesian velocity components are mutually independent. By isotropy they have the same one-dimensional density $f$ \cite{indep}.
-\end{enumerate}
+
+\textbf{Assumption 1 (isotropy).} There is no preferred direction. The joint velocity density depends only on $v_1^2+v_2^2+v_3^2$.
+
+\textbf{Assumption 2 (independent components).} The three Cartesian velocity components are mutually independent. By Assumption 1, they have the same one-dimensional density $f$ \cite{indep}.
+
 Together these assumptions give
 \begin{equation}\label{model}
  F(v_1,v_2,v_3)=f(v_1)f(v_2)f(v_3)
               =\Phi(v_1^2+v_2^2+v_3^2).
 \end{equation}
-We also assume $f>0$, $f$ integrable with $\int_\R f(x)\,dx=1$, and sufficient smoothness: $g=\log f$ and a real extension $H$ of the radial log-density $\log\Phi$ are differentiable. These are explicit model assumptions; independent components are not a consequence of choosing perpendicular axes.
+We also assume $f>0$, $f$ integrable with $\int_\R f(x)\,dx=1$, and sufficient smoothness: $g=\log f$ and a real extension $H$ of the radial log-density $\log\Phi$ are differentiable. Independence is a modeling assumption, not a consequence of perpendicular axes.
 
-\textbf{Physical conclusion (conditional on this model and the three cited background inputs on page 3).}
-The molecule's velocity density must be an isotropic Gaussian: for some component standard deviation $\sigma>0$,
+\textbf{Theorem (Maxwell's velocity and speed laws).}
+Under \textbf{Assumption~1 (isotropy)} and \textbf{Assumption~2 (independent components)}, together with the positivity, normalization, and differentiability conditions stated above, there exists a component standard deviation $\sigma>0$ for which the molecule's equilibrium velocity density is
 \begin{equation}\label{normal}
  F(v_1,v_2,v_3)=\frac{1}{(2\pi\sigma^2)^{3/2}}
        \exp\!\left(-\frac{v_1^2+v_2^2+v_3^2}{2\sigma^2}\right).

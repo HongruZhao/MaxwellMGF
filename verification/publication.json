@@ -4,8 +4,8 @@
   "repository_id": 1430677903,
   "visibility": "private",
   "owner": "HongruZhao",
-  "version_tag": "v1.0.2",
+  "version_tag": "v1.0.3",
   "initial_uploaded_commit": "6fef46b43aaa66ff3b7dd6103e39706088fceddc",
   "access_note": "The instructor must have access to view or download this private repository.",
-  "revision_note": "Report statement revised to state the ideal-gas model and its isotropy and independence assumptions. Lean sources unchanged from v1.0.1."
+  "revision_note": "Assumption 1 (isotropy) and Assumption 2 (independent components) are separately labeled and explicitly named in the theorem hypothesis. Lean sources unchanged from v1.0.1."
 }
