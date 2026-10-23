@@ -2,13 +2,15 @@
   "date_local": "2026-10-23",
   "pages": 3,
   "author": "Hongru Zhao",
+  "revision": "Physics-centered statement with explicit isotropy and independent components",
   "all_pages_rendered_and_visually_inspected": true,
   "compiler_errors": 0,
   "overfull_boxes": 0,
   "unresolved_references": 0,
-  "pdf_sha256": "f452a3b35bb90dab53945685deab0752d2be681c8edd9efa5b32294ba64b6838",
-  "source_sha256": "cea52f5e5990938a9098fff190cf578c6844bdc39156ed5286ab9bcea4445052",
+  "pdf_sha256": "8fd3ab49dff7b9c21f5ac7d9aee9feb1538937463c12f6c5b8baa5dc6afec714",
+  "source_sha256": "588d33c71a016ddfd8e70a427c945706a3903d5fe03f4322358aaa3693c2dd31",
   "repository": "https://github.com/HongruZhao/MaxwellMGF",
   "visibility": "private",
-  "version_tag": "v1.0.1"
+  "version_tag": "v1.0.2",
+  "lean_sources_unchanged_from": "v1.0.1"
 }

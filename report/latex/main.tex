@@ -21,44 +21,42 @@
 {\large Hongru Zhao}\par
 STAT 4052 midterm project \hfill October 23, 2026\par
 \textbf{Repository:} \href{https://github.com/HongruZhao/MaxwellMGF}{github.com/HongruZhao/MaxwellMGF} (private).
-\textbf{Version:} \href{https://github.com/HongruZhao/MaxwellMGF/tree/v1.0.1}{Git tag v1.0.1}. The repository includes pinned dependencies, build instructions, and verification logs.
+\textbf{Version:} \href{https://github.com/HongruZhao/MaxwellMGF/tree/v1.0.2}{Git tag v1.0.2}. The repository includes pinned dependencies, build instructions, and verification logs.
 
-\heading{1. Model and precise conditional theorem}
-Maxwell's Proposition IV connects an isotropic gas-velocity model to a Gaussian component law and a non-Gaussian speed law \cite{maxwell}. This project reconstructs that argument and connects it to the chi-square distributions used in statistics.
-
-Let $(\Omega,\mathcal F,P)$ be a probability space and $V:\Omega\to\R^3$ be measurable. Work in the gas's \emph{bulk rest frame}. Equilibrium and the applicability of the following model are physical postulates, not consequences of perpendicular coordinate axes. Assume a common positive density $f=e^g$, with $g,H:\R\to\R$ differentiable, such that
+\heading{1. Ideal-gas model and physical conclusion}
+Consider a classical ideal gas at thermal equilibrium, viewed in its \emph{bulk rest frame}. Let $V=(V_1,V_2,V_3)$ be the velocity of a randomly chosen molecule and $R=\|V\|$ its speed. Following Maxwell's Proposition IV, we assume two properties of its velocity density \cite{maxwell}:
+\begin{enumerate}
+\item \textbf{Isotropy:} there is no preferred direction. The joint velocity density depends only on $v_1^2+v_2^2+v_3^2$.
+\item \textbf{Independent components:} the three Cartesian velocity components are mutually independent. By isotropy they have the same one-dimensional density $f$ \cite{indep}.
+\end{enumerate}
+Together these assumptions give
 \begin{equation}\label{model}
- \int_\R f(x)\,dx=1,\quad f\text{ integrable},\qquad
- g(x)+g(y)+g(z)=H(x^2+y^2+z^2).
+ F(v_1,v_2,v_3)=f(v_1)f(v_2)f(v_3)
+              =\Phi(v_1^2+v_2^2+v_3^2).
 \end{equation}
-Assume $\Law(V)$ has Lebesgue density $f(v_1)f(v_2)f(v_3)$.
-Factorization expresses \emph{mutual component independence}; the identity in \eqref{model} expresses isotropy, with $\Phi=e^H$. The differentiable extension of $H$ to all of $\R$ is an explicit sufficient regularity assumption. Positivity, identical marginals, normalization, and independence are model inputs \cite{maxwell,indep}.
+We also assume $f>0$, $f$ integrable with $\int_\R f(x)\,dx=1$, and sufficient smoothness: $g=\log f$ and a real extension $H$ of the radial log-density $\log\Phi$ are differentiable. These are explicit model assumptions; independent components are not a consequence of choosing perpendicular axes.
 
-\textbf{Theorem (conditional on these hypotheses and the three inputs on page 3).}
-There exists $\sigma>0$ such that, for $R=\|V\|$, $U_i=(V_i/\sigma)^2$, and $S=\sum_{i=1}^3U_i$,
-\begin{align}
- \Law(V_i)&=\N(0,\sigma^2),&
- \Law(V)&=\bigotimes_{i=1}^3\N(0,\sigma^2)=\N_3(0,\sigma^2 I_3),\label{normal}\\
- M_V(t)&=e^{\sigma^2\|t\|^2/2},&
- \Law(U_i)&=\chi^2_1,\quad \Law(S)=\chi^2_3.\label{main}
-\end{align}
-The $U_i$ are mutually independent; their MGFs and $M_S$ exist for $t<1/2$.
-Moreover $R=\sigma\sqrt S$, and $\Law(R)=p_R(r)\,dr$, where
+\textbf{Physical conclusion (conditional on this model and the three cited background inputs on page 3).}
+The molecule's velocity density must be an isotropic Gaussian: for some component standard deviation $\sigma>0$,
+\begin{equation}\label{normal}
+ F(v_1,v_2,v_3)=\frac{1}{(2\pi\sigma^2)^{3/2}}
+       \exp\!\left(-\frac{v_1^2+v_2^2+v_3^2}{2\sigma^2}\right).
+\end{equation}
+Thus each signed velocity component has a centered normal distribution with variance $\sigma^2$. The molecule's nonnegative \emph{speed} has the Maxwell density
 \begin{equation}\label{maxwell}
  p_R(r)=
  \begin{cases}\sqrt{2/\pi}\,r^2\sigma^{-3}e^{-r^2/(2\sigma^2)},&r\ge0,\\0,&r<0,\end{cases}
  \qquad \int_\R p_R(r)\,dr=1.
 \end{equation}
-These are equalities of probability measures, not only candidate-density identities.
+The assumptions determine these distributional shapes, while leaving the scale $\sigma$ unspecified. Lean checks the actual velocity and speed laws and their normalization. Section 3 explains the MGF and chi-square steps connecting the two laws. Equilibration from collisions is outside the claim.
 
-\heading{2. Deriving the Gaussian rather than assuming it}
-Differentiate \eqref{model} in $x$ to obtain
-$g'(x)=2xH'(x^2+y^2+z^2)$. Comparing $(x,1,0)$ with $(1,x,0)$ gives $g'(x)=xg'(1)$, including $x=0$. Hence $g(x)=g(0)-bx^2$, with $b=-g'(1)/2$. Integrability forces $b>0$: otherwise $f(x)\ge e^{g(0)}>0$ on all of $\R$. The Gaussian integral then gives
-$f(x)=\sqrt{b/\pi}\,e^{-bx^2}$ and $\sigma^2=(2b)^{-1}$.
-Independence identifies the full joint law in \eqref{normal}; orthogonality alone would not do so.
+\heading{2. Deriving the Gaussian density}
+Taking logarithms of \eqref{model} gives $g(x)+g(y)+g(z)=H(x^2+y^2+z^2)$. Differentiating in $x$ yields
+$g'(x)=2xH'(x^2+y^2+z^2)$. Comparing $(x,1,0)$ with $(1,x,0)$ gives $g'(x)=xg'(1)$, including $x=0$. Hence $g(x)=g(0)-bx^2$, with $b=-g'(1)/2$. Integrability forces $b>0$: otherwise $f(x)\ge e^{g(0)}>0$ on all of $\R$. Normalization gives $f(x)=\sqrt{b/\pi}\,e^{-bx^2}$ and $\sigma^2=(2b)^{-1}$, yielding \eqref{normal}.
 \newpage
 
 \heading{3. From the joint MGF to chi-square laws}
+Define $U_i=(V_i/\sigma)^2$ and $S=\sum_{i=1}^3U_i=R^2/\sigma^2$, the dimensionless squared speed.
 For every $t=(t_1,t_2,t_3)\in\R^3$, the Gaussian exponential integrals are finite. Independence therefore gives
 \[
  M_V(t)=\E e^{\sum_i t_iV_i}
